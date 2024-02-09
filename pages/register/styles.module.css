@@ -1,0 +1,19 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+.form label {
+  justify-self: end;
+  align-self: center;
+}
+.form input {
+  padding: 0.5rem 1rem;
+}
+.form button {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: max-content;
+  justify-self: start;
+  padding: 0.5rem 1rem;
+}

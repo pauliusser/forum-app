@@ -1,0 +1,17 @@
+.footer {
+  height: 100px;
+  width: 100%;
+  background-color: var(--bg-color);
+  display: flex;
+  padding: 0 10%;
+  justify-content: center;
+  align-items: center;
+}
+.footer ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+.footer ul li a {
+  cursor: pointer;
+}
