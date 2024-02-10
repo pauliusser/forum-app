@@ -1,0 +1,57 @@
+.newTopicForm {
+  position: fixed;
+  max-width: 90%;
+  width: 700px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 100%; */
+  background-color: rgb(229, 229, 229);
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.75);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+}
+.newTopicForm label {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  justify-self: end;
+  align-self: baseline;
+  padding: 0.5rem 0;
+}
+.newTopicForm input {
+  padding: 0.5rem 1rem;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.submitBtn {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  width: max-content;
+  justify-self: center;
+  padding: 0.5rem 1rem;
+}
+.newTopicForm textarea {
+  resize: none;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  padding: 0.5rem 1rem;
+}
+.newTopicForm h2 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  justify-self: center;
+}
+.closeBtn {
+  border-radius: 50%;
+  border: 1px solid grey;
+  width: 2rem;
+  height: 2rem;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: self-end;
+}

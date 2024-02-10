@@ -1,0 +1,12 @@
+.topicsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+}
+/* .newTopicForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+} */

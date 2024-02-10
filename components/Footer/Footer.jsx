@@ -9,7 +9,7 @@ const Footer = () => {
           <a href="#">social 1</a>
         </li>
         <li>
-          <a href="#">social 1</a>
+          <a href="#">social 2</a>
         </li>
       </ul>
     </footer>
