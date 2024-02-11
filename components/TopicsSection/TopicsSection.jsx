@@ -18,22 +18,35 @@ const TopicsSection = () => {
     authorization: Cookies.get("jwt_token"),
   };
   const fetchTopics = async () => {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/topics`, {
-      headers: headers,
-    });
-    setTopics(response.data.topics);
+    try {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/topics`, {
+        headers: headers,
+      });
+      setTopics(response.data.topics);
+      console.log(response.data.topics);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
     fetchTopics();
-  }, [isNewTopic, topics]);
+  }, [isNewTopic]);
 
   return (
     <section className={styles.topicsSection}>
       <h1>Topics</h1>
       {topics &&
         topics.map((topic) => {
-          return <TopicCard key={topic._id} title={topic.title} />;
+          return (
+            <TopicCard
+              key={topic._id}
+              title={topic.title}
+              initialPost={topic.initialPost}
+              creatorName={topic.creator.name}
+              creatroPic={topic.creator.profile_picture}
+            />
+          );
         })}
       <button
         onClick={() => {

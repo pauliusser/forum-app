@@ -4,4 +4,31 @@
   max-width: 700px;
   padding: 1.5rem;
   border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1rem;
+}
+
+.topicCard img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+.topicCard p {
+  /* overflow: hidden;
+  
+  text-overflow: ellipsis; */
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }

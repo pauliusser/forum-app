@@ -38,10 +38,6 @@ const Register = () => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log("api_port :", process.env.NEXT_PUBLIC_API_URL);
-  // }, []);
-
   return (
     <PageTemplate>
       <form className={styles.form} onSubmit={(event) => event.preventDefault()}>

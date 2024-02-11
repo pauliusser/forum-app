@@ -8,6 +8,11 @@ const Header = () => {
   const router = useRouter();
   const [jwtToken, setJwtToken] = useState("");
 
+  const logOut = () => {
+    Cookies.remove("jwt_token");
+    router.push("/logIn");
+  };
+
   useEffect(() => {
     setJwtToken(Cookies.get("jwt_token"));
   }, []);
@@ -25,13 +30,7 @@ const Header = () => {
               <Link href="#">Contacts</Link>
             </li>
             <li>
-              <button
-                onClick={() => {
-                  Cookies.remove("jwt_token");
-                  router.push("/logIn");
-                }}>
-                LogOut
-              </button>
+              <button onClick={logOut}>LogOut</button>
             </li>
           </ul>
         </nav>

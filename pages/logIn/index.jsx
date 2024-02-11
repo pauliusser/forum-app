@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PageTemplate from "@/components/PageTemplate/PageTemplate";
 import styles from "./styles.module.css";
 import axios from "axios";
@@ -32,7 +32,6 @@ const LogIn = () => {
 
   return (
     <PageTemplate>
-      <br />
       <form
         className={styles.form}
         onSubmit={(event) => {
