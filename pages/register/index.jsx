@@ -8,13 +8,11 @@ import { useRouter } from "next/router";
 const Register = () => {
   const router = useRouter();
 
-  const [name, setName] = useState("spongebob");
-  const [email, setEmail] = useState("sponge@bikini.bottom");
-  const [pass, setPass] = useState("secretRecipy123");
-  const [repPass, setRepPass] = useState("secretRecipy123");
-  const [pic, setPic] = useState(
-    "https://i.scdn.co/image/3fb9fb7e2c4ae8bbfb5b3343e03fcbc77c40b8a1"
-  );
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [repPass, setRepPass] = useState("");
+  const [pic, setPic] = useState("");
 
   const user = {
     name: name,

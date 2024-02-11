@@ -24,7 +24,7 @@ const TopicsSection = () => {
         headers: headers,
       });
       setTopics(response.data.topics);
-      console.log(response.data.topics);
+      // console.log(response.data.topics);
     } catch (err) {
       console.log(err);
     }

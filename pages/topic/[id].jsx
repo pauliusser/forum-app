@@ -7,8 +7,11 @@ import Cookies from "js-cookie";
 import PostCard from "@/components/PostCard/PostCard";
 import NewPost from "@/components/NewPost/NewPost";
 import styles from "./styles.module.css";
+import { authorization } from "@/src/helpers/helpers";
 
 const Topic = () => {
+  //autorizacija paleidziama viena karta ir po to kas minute
+
   const router = useRouter();
   const topicId = router.query.id;
 
@@ -75,6 +78,14 @@ const Topic = () => {
   delete useEffect(() => {
     fetchPosts();
   }, [topicId, clickCount]);
+
+  useEffect(() => {
+    authorization(router);
+    const authInterval = setInterval(() => {
+      authorization(router);
+    }, 60000);
+    return () => clearInterval(authInterval);
+  }, []);
 
   return (
     <PageTemplate>
