@@ -9,6 +9,7 @@ import TopicCard from "./TopicCard/TopicCard";
 const TopicsSection = () => {
   const [isNewTopic, setIsNewTopic] = useState(false);
   const [topics, setTopics] = useState([]);
+  const [updateTopicCount, setUpdateTopicCount] = useState(0);
 
   const closeForm = () => {
     setIsNewTopic(false);
@@ -29,9 +30,25 @@ const TopicsSection = () => {
     }
   };
 
+  const deleteTopic = async (id) => {
+    const headers = {
+      authorization: Cookies.get("jwt_token"),
+    };
+    try {
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_URL}/topics/${id}`,
+        { headers: headers }
+      );
+      console.log(response);
+      setUpdateTopicCount(updateTopicCount + 1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     fetchTopics();
-  }, [isNewTopic]);
+  }, [isNewTopic, updateTopicCount]);
 
   return (
     <section className={styles.topicsSection}>
@@ -41,6 +58,8 @@ const TopicsSection = () => {
           return (
             <TopicCard
               key={topic._id}
+              id={topic._id}
+              deleteTopic={deleteTopic}
               title={topic.title}
               initialPost={topic.initialPost}
               creatorName={topic.creator.name}
