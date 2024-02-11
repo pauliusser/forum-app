@@ -5,8 +5,12 @@
   padding: 1.5rem;
   border-radius: 1rem;
   display: grid;
-  grid-template-columns: 100px 1fr auto;
+  grid-template-columns: 100px auto 1fr auto;
   gap: 1rem;
+}
+.votes {
+  align-self: center;
+  text-align: center;
 }
 
 .topicCard img {
@@ -37,4 +41,10 @@
   height: min-content;
   padding: 0.25rem;
   align-self: center;
+}
+.title {
+  cursor: pointer;
+}
+.title:hover {
+  color: rgb(255, 60, 0);
 }

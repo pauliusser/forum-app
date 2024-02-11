@@ -1,13 +1,23 @@
 import React from "react";
 import styles from "./styles.module.css";
-import axios from "axios";
-import "dotenv/config";
-// import { headers } from "next/headers";
-import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
-const TopicCard = ({ title, initialPost, creatorName, creatroPic, id, deleteTopic }) => {
-  const clickAction = () => {
+const TopicCard = ({
+  title,
+  initialPost,
+  creatorName,
+  creatroPic,
+  id,
+  deleteTopic,
+  votes,
+}) => {
+  const router = useRouter();
+
+  const deleteClick = () => {
     deleteTopic(id);
+  };
+  const titleClick = () => {
+    router.push(`/topic/${id}`);
   };
 
   return (
@@ -16,11 +26,19 @@ const TopicCard = ({ title, initialPost, creatorName, creatroPic, id, deleteTopi
         <img src={creatroPic}></img>
         <h4>{creatorName}</h4>
       </div>
+
+      <h4 className={styles.votes}>
+        {votes}0<br />
+        votes
+      </h4>
+
       <div>
-        <h3>{title}</h3>
+        <h3 onClick={titleClick} className={styles.title}>
+          {title}
+        </h3>
         {<p>{initialPost.content}</p>}
       </div>
-      <button className={styles.deleteBtn} onClick={clickAction}>
+      <button className={styles.deleteBtn} onClick={deleteClick}>
         delete Topic
       </button>
     </div>

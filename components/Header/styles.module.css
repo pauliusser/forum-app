@@ -1,17 +1,25 @@
 .header {
-  height: 100px;
-  width: 100%;
-  background-color: var(--bg-color);
   display: flex;
-  padding: 0 10%;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+}
+
+.contentWrapper {
+  height: 100px;
+  width: 90%;
+  max-width: 1000px;
+
+  display: flex;
+  padding: 0;
   justify-content: space-between;
   align-items: center;
 }
-.header nav ul {
+.contentWrapper nav ul {
   display: flex;
   gap: 1rem;
   list-style: none;
 }
-.header nav ul li a {
+.contentWrapper nav ul li a {
   cursor: pointer;
 }

@@ -68,6 +68,7 @@ const TopicsSection = () => {
           );
         })}
       <button
+        className={styles.newTopicBtn}
         onClick={() => {
           setIsNewTopic(true);
         }}>

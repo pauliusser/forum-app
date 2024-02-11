@@ -19,33 +19,35 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div>Logo</div>
-      {jwtToken ? (
-        <nav>
-          <ul>
-            <li>
-              <Link href="/">Loby</Link>
-            </li>
-            <li>
-              <Link href="#">Contacts</Link>
-            </li>
-            <li>
-              <button onClick={logOut}>LogOut</button>
-            </li>
-          </ul>
-        </nav>
-      ) : (
-        <nav>
-          <ul>
-            <li>
-              <Link href="/logIn">Log In</Link>
-            </li>
-            <li>
-              <Link href="/register">Register</Link>
-            </li>
-          </ul>
-        </nav>
-      )}
+      <div className={styles.contentWrapper}>
+        <div>Logo</div>
+        {jwtToken ? (
+          <nav>
+            <ul>
+              <li>
+                <Link href="/">Loby</Link>
+              </li>
+              <li>
+                <Link href="#">Contacts</Link>
+              </li>
+              <li>
+                <button onClick={logOut}>LogOut</button>
+              </li>
+            </ul>
+          </nav>
+        ) : (
+          <nav>
+            <ul>
+              <li>
+                <Link href="/logIn">Log In</Link>
+              </li>
+              <li>
+                <Link href="/register">Register</Link>
+              </li>
+            </ul>
+          </nav>
+        )}
+      </div>
     </header>
   );
 };

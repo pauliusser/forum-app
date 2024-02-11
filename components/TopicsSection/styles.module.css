@@ -10,3 +10,7 @@
   flex-direction: column;
   gap: 1rem;
 } */
+.newTopicBtn {
+  width: fit-content;
+  padding: 0.5rem;
+}
