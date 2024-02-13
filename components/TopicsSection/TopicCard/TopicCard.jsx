@@ -36,7 +36,7 @@ const TopicCard = ({
         <h3 onClick={titleClick} className={styles.title}>
           {title}
         </h3>
-        {<p>{initialPost.content}</p>}
+        {initialPost && <p>{initialPost.content}</p>}
       </div>
       <button className={styles.deleteBtn} onClick={deleteClick}>
         delete Topic

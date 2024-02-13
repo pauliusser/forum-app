@@ -39,7 +39,7 @@ const TopicsSection = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/topics/${id}`,
         { headers: headers }
       );
-      console.log(response);
+      console.log(response.data);
       setUpdateTopicCount(updateTopicCount + 1);
     } catch (err) {
       console.log(err);

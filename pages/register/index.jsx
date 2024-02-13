@@ -28,7 +28,7 @@ const Register = () => {
         user
       );
 
-      console.log(response);
+      console.log(response.data);
 
       router.push("/logIn");
     } catch (err) {

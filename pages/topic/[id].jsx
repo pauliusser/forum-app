@@ -68,7 +68,7 @@ const Topic = () => {
           headers: headers,
         }
       );
-      console.log(response);
+      console.log(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -97,6 +97,7 @@ const Topic = () => {
               <PostCard
                 key={post._id}
                 id={post._id}
+                initialVotes={post.votes}
                 content={post.content}
                 author={post.author}
                 deletePost={deletePost}
