@@ -115,6 +115,7 @@ const Topic = () => {
                 id={post._id}
                 initialVotes={post.votes}
                 userVote={post.userVote}
+                isAuthor={post.isAuthor}
                 content={post.content}
                 authorName={post.authorName}
                 authorProfilePicture={post.authorProfilePicture}

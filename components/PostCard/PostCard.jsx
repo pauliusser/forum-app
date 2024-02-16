@@ -11,20 +11,23 @@ const PostCard = ({
   id,
   initialVotes,
   userVote,
+  isAuthor,
 }) => {
+  const userVoteVal = userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0;
+  const otherUsersVotes = initialVotes - userVoteVal;
+
   const [voteCounter, setVoteCounter] = useState(initialVotes);
   const [upvoteBtn, setUpvoteBtn] = useState(
-    userVote === "upvote" ? true : userVote === "downvote" ? false : false
+    userVoteVal === 1 ? true : userVote === -1 ? false : false
   );
   const [downvoteBtn, setDownvoteBtn] = useState(
-    userVote === "downvote" ? true : userVote === "upvote" ? false : false
+    userVoteVal === -1 ? true : userVote === 1 ? false : false
   );
   const [oldVote, setOldVote] = useState(0);
-  const [vote, setVote] = useState(
-    userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0
-  );
+  const [vote, setVote] = useState(userVoteVal);
   const [isVotingInitialized, setIsVotingInitialized] = useState(false);
   const [isButtonsInitialized, setisButtonsInitialized] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
 
   const headers = {
     authorization: Cookies.get("jwt_token"),
@@ -33,10 +36,12 @@ const PostCard = ({
   const upvoteClick = () => {
     setUpvoteBtn(!upvoteBtn);
     setDownvoteBtn(false);
+    setClickCount(clickCount + 1);
   };
   const downvoteClick = () => {
     setUpvoteBtn(false);
     setDownvoteBtn(!downvoteBtn);
+    setClickCount(clickCount + 1);
   };
   const manageVoteStates = (arg) => {
     switch (true) {
@@ -92,54 +97,27 @@ const PostCard = ({
     }
   };
 
-  const conosleLogAll = () => {
-    console.log(
-      " voteCounter:",
-      voteCounter,
-      " upvoteBtn:",
-      upvoteBtn,
-      " downvoteBtn:",
-      downvoteBtn,
-      " oldVote:",
-      oldVote,
-      " vote:",
-      vote,
-      " isVotingInitialized:",
-      isVotingInitialized,
-      " isButtonsInitialized:",
-      isButtonsInitialized
-    );
-  };
-  useEffect(() => {
-    conosleLogAll();
-    setisButtonsInitialized(true);
-    setIsVotingInitialized(true);
-  }, []);
-
   useEffect(() => {
     if (!isButtonsInitialized) {
+      setisButtonsInitialized(true);
       return;
     }
     manageVoteStates();
-    conosleLogAll();
-  }, [upvoteBtn, downvoteBtn]);
+  }, [clickCount]);
 
   useEffect(() => {
     if (!isVotingInitialized) {
+      setIsVotingInitialized(true);
       return;
     }
     if (Math.abs(vote - oldVote) === 2) {
       updateVote();
-      return;
-    }
-    if (!oldVote && vote) {
+    } else if (!oldVote && vote) {
       createVote();
-      return;
-    }
-    if (oldVote && !vote) {
+    } else if (oldVote && !vote) {
       deleteVote();
-      return;
     }
+    setVoteCounter(otherUsersVotes + vote);
   }, [vote]);
 
   return (
@@ -149,23 +127,36 @@ const PostCard = ({
         <h4>{authorName}</h4>
       </div>
       <div className={styles.vote}>
-        <button onClick={upvoteClick} className={upvoteBtn ? styles.active : null}>
-          ↑
-        </button>
-        <h4>{voteCounter}</h4>
-        <h4>votes</h4>
-        <button onClick={downvoteClick} className={downvoteBtn ? styles.active : null}>
-          ↓
-        </button>
+        {isAuthor ? (
+          <>
+            <h4>{voteCounter}</h4>
+            <h4>votes</h4>
+          </>
+        ) : (
+          <>
+            <button onClick={upvoteClick} className={upvoteBtn ? styles.active : null}>
+              ↑
+            </button>
+            <h4>{voteCounter}</h4>
+            <h4>votes</h4>
+            <button
+              onClick={downvoteClick}
+              className={downvoteBtn ? styles.active : null}>
+              ↓
+            </button>
+          </>
+        )}
       </div>
       <p>{content}</p>
-      <button
-        className={styles.deleteBtn}
-        onClick={() => {
-          deletePost(id);
-        }}>
-        Delete post
-      </button>
+      {isAuthor && (
+        <button
+          className={styles.deleteBtn}
+          onClick={() => {
+            deletePost(id);
+          }}>
+          Delete post
+        </button>
+      )}
     </div>
   );
 };
