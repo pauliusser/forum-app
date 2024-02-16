@@ -30,11 +30,24 @@ const Topic = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${topicId}`,
         { headers: headers }
       );
-      // console.log("post response: ", response);
-      setPosts(response.data.posts);
-      setTitle(response.data.posts[0].topic.title);
+      console.log("post response: ", response.data);
+      setPosts(response.data);
     } catch (err) {
       console.log(err);
+      // router.push("/");
+    }
+  };
+  const fetchTopicTitle = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/topics/${topicId}`,
+        { headers: headers }
+      );
+      console.log("post response: ", response.data);
+      setTitle(response.data.topic.title);
+    } catch (err) {
+      console.log(err);
+      // router.push("/");
     }
   };
   const submitNewPost = async (content) => {
@@ -76,7 +89,10 @@ const Topic = () => {
   };
 
   delete useEffect(() => {
-    fetchPosts();
+    if (topicId) {
+      fetchTopicTitle();
+      fetchPosts();
+    }
   }, [topicId, clickCount]);
 
   useEffect(() => {
@@ -98,8 +114,10 @@ const Topic = () => {
                 key={post._id}
                 id={post._id}
                 initialVotes={post.votes}
+                userVote={post.userVote}
                 content={post.content}
-                author={post.author}
+                authorName={post.authorName}
+                authorProfilePicture={post.authorProfilePicture}
                 deletePost={deletePost}
               />
             );

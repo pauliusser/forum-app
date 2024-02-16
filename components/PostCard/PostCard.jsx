@@ -3,15 +3,28 @@ import styles from "./styles.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const PostCard = ({ content, author, deletePost, id, initialVotes }) => {
-  const [nonUserVotes, setnonUserVotes] = useState(initialVotes);
-  const [upvoteBtn, setUpvoteBtn] = useState(false);
-  const [downvoteBtn, setDownvoteBtn] = useState(false);
-  const [vote, setVote] = useState(0);
-  const [isVoting, setIsVoting] = useState(false);
-  const [clickCount, setClickCount] = useState(0);
-  const [isFirsRun, setIsFirsRun] = useState(true);
-  const [isFirsGo, setIsFirsGo] = useState(true);
+const PostCard = ({
+  content,
+  authorName,
+  authorProfilePicture,
+  deletePost,
+  id,
+  initialVotes,
+  userVote,
+}) => {
+  const [voteCounter, setVoteCounter] = useState(initialVotes);
+  const [upvoteBtn, setUpvoteBtn] = useState(
+    userVote === "upvote" ? true : userVote === "downvote" ? false : false
+  );
+  const [downvoteBtn, setDownvoteBtn] = useState(
+    userVote === "downvote" ? true : userVote === "upvote" ? false : false
+  );
+  const [oldVote, setOldVote] = useState(0);
+  const [vote, setVote] = useState(
+    userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0
+  );
+  const [isVotingInitialized, setIsVotingInitialized] = useState(false);
+  const [isButtonsInitialized, setisButtonsInitialized] = useState(false);
 
   const headers = {
     authorization: Cookies.get("jwt_token"),
@@ -20,14 +33,29 @@ const PostCard = ({ content, author, deletePost, id, initialVotes }) => {
   const upvoteClick = () => {
     setUpvoteBtn(!upvoteBtn);
     setDownvoteBtn(false);
-    setClickCount(clickCount + 1);
   };
   const downvoteClick = () => {
     setUpvoteBtn(false);
     setDownvoteBtn(!downvoteBtn);
-    setClickCount(clickCount + 1);
   };
+  const manageVoteStates = (arg) => {
+    switch (true) {
+      case upvoteBtn === false && downvoteBtn === false:
+        setOldVote(vote);
+        setVote(0);
+        break;
 
+      case upvoteBtn === true && downvoteBtn === false:
+        setOldVote(vote);
+        setVote(1);
+        break;
+
+      case upvoteBtn === false && downvoteBtn === true:
+        setOldVote(vote);
+        setVote(-1);
+        break;
+    }
+  };
   const createVote = async () => {
     console.log("create vote");
     try {
@@ -45,11 +73,9 @@ const PostCard = ({ content, author, deletePost, id, initialVotes }) => {
       console.log(err);
     }
   };
-
   const updateVote = async () => {
     console.log("update vote");
   };
-
   const deleteVote = async () => {
     console.log("delete vote");
 
@@ -66,58 +92,67 @@ const PostCard = ({ content, author, deletePost, id, initialVotes }) => {
     }
   };
 
+  const conosleLogAll = () => {
+    console.log(
+      " voteCounter:",
+      voteCounter,
+      " upvoteBtn:",
+      upvoteBtn,
+      " downvoteBtn:",
+      downvoteBtn,
+      " oldVote:",
+      oldVote,
+      " vote:",
+      vote,
+      " isVotingInitialized:",
+      isVotingInitialized,
+      " isButtonsInitialized:",
+      isButtonsInitialized
+    );
+  };
   useEffect(() => {
-    if (isFirsRun) {
-      setIsFirsRun(false);
-      return;
-    }
-
-    switch (true) {
-      case upvoteBtn === false && downvoteBtn === false:
-        setVote(0);
-        deleteVote();
-        setIsVoting(false);
-        break;
-
-      case upvoteBtn === true && downvoteBtn === false:
-        if (vote + 1 === 0) {
-          updateVote();
-        }
-        setVote(1);
-        setIsVoting(true);
-        break;
-
-      case upvoteBtn === false && downvoteBtn === true:
-        if (vote - 1 === 0) {
-          updateVote();
-        }
-        setVote(-1);
-        setIsVoting(true);
-        break;
-    }
-  }, [clickCount]);
+    conosleLogAll();
+    setisButtonsInitialized(true);
+    setIsVotingInitialized(true);
+  }, []);
 
   useEffect(() => {
-    if (isFirsGo) {
-      setIsFirsGo(false);
+    if (!isButtonsInitialized) {
       return;
     }
-    if (isVoting) {
+    manageVoteStates();
+    conosleLogAll();
+  }, [upvoteBtn, downvoteBtn]);
+
+  useEffect(() => {
+    if (!isVotingInitialized) {
+      return;
+    }
+    if (Math.abs(vote - oldVote) === 2) {
+      updateVote();
+      return;
+    }
+    if (!oldVote && vote) {
       createVote();
+      return;
     }
-  }, [isVoting]);
+    if (oldVote && !vote) {
+      deleteVote();
+      return;
+    }
+  }, [vote]);
 
   return (
     <div className={styles.postCard}>
       <div className={styles.user}>
-        <img src={author.profile_picture}></img>
-        <h4>{author.name}</h4>
+        <img src={authorProfilePicture}></img>
+        <h4>{authorName}</h4>
       </div>
       <div className={styles.vote}>
         <button onClick={upvoteClick} className={upvoteBtn ? styles.active : null}>
           ↑
         </button>
-        <h4>{nonUserVotes + vote}</h4>
+        <h4>{voteCounter}</h4>
         <h4>votes</h4>
         <button onClick={downvoteClick} className={downvoteBtn ? styles.active : null}>
           ↓
