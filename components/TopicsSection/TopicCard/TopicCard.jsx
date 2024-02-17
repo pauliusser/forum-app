@@ -9,7 +9,7 @@ const TopicCard = ({
   creatroPic,
   id,
   deleteTopic,
-  votes,
+  isCreator,
 }) => {
   const router = useRouter();
 
@@ -28,7 +28,8 @@ const TopicCard = ({
       </div>
 
       <h4 className={styles.votes}>
-        {votes}0<br />
+        {initialPost.votes}
+        <br />
         votes
       </h4>
 
@@ -38,9 +39,11 @@ const TopicCard = ({
         </h3>
         {initialPost && <p>{initialPost.content}</p>}
       </div>
-      <button className={styles.deleteBtn} onClick={deleteClick}>
-        delete Topic
-      </button>
+      {isCreator && (
+        <button className={styles.deleteBtn} onClick={deleteClick}>
+          delete Topic
+        </button>
+      )}
     </div>
   );
 };

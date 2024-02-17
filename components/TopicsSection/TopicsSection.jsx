@@ -24,7 +24,7 @@ const TopicsSection = () => {
         headers: headers,
       });
       setTopics(response.data.topics);
-      // console.log(response.data.topics);
+      console.log(response.data.topics);
     } catch (err) {
       console.log(err);
     }
@@ -61,9 +61,10 @@ const TopicsSection = () => {
               id={topic._id}
               deleteTopic={deleteTopic}
               title={topic.title}
-              initialPost={topic.initialPost}
-              creatorName={topic.creator.name}
-              creatroPic={topic.creator.profile_picture}
+              initialPost={topic.initialPostDetails[0]}
+              creatorName={topic.creatorDetails[0].name}
+              creatroPic={topic.creatorDetails[0].profile_picture}
+              isCreator={topic.isCreator}
             />
           );
         })}

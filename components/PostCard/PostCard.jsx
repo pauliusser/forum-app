@@ -12,6 +12,7 @@ const PostCard = ({
   initialVotes,
   userVote,
   isAuthor,
+  isFirstPost,
 }) => {
   const userVoteVal = userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0;
   const otherUsersVotes = initialVotes - userVoteVal;
@@ -78,8 +79,25 @@ const PostCard = ({
       console.log(err);
     }
   };
-  const updateVote = async () => {
-    console.log("update vote");
+  const updateVote = async (value) => {
+    let voteType = "";
+    if (value === 2) {
+      voteType = "upvote";
+    }
+    if (value === -2) {
+      voteType = "downvote";
+    }
+
+    try {
+      const response = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/votes/${id}`,
+        { type: voteType },
+        { headers: headers }
+      );
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
   const deleteVote = async () => {
     console.log("delete vote");
@@ -111,7 +129,7 @@ const PostCard = ({
       return;
     }
     if (Math.abs(vote - oldVote) === 2) {
-      updateVote();
+      updateVote(vote - oldVote);
     } else if (!oldVote && vote) {
       createVote();
     } else if (oldVote && !vote) {
@@ -148,7 +166,7 @@ const PostCard = ({
         )}
       </div>
       <p>{content}</p>
-      {isAuthor && (
+      {!isFirstPost && isAuthor && (
         <button
           className={styles.deleteBtn}
           onClick={() => {

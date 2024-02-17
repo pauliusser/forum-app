@@ -108,9 +108,10 @@ const Topic = () => {
       <div className={styles.pageWrapper}>
         {title && <h1>{title}</h1>}
         {posts &&
-          posts.map((post) => {
+          posts.map((post, index) => {
             return (
               <PostCard
+                isFirstPost={index === 0}
                 key={post._id}
                 id={post._id}
                 initialVotes={post.votes}
