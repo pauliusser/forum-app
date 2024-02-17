@@ -37,10 +37,10 @@ const Header = ({ userStatus, userName, userPic }) => {
           <nav>
             <ul>
               <li>
-                <Link href="/">Loby</Link>
+                <Link href="/">Topics</Link>
               </li>
               <li>
-                <Link href="#">Contacts</Link>
+                <Link href="/myPosts">My Posts</Link>
               </li>
               <li>
                 <button onClick={logOut}>LogOut</button>
