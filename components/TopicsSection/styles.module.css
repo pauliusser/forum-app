@@ -1,16 +1,23 @@
 .topicsSection {
+  padding: 2rem 0;
+  flex: 1 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   width: 100%;
   align-items: center;
 }
-/* .newTopicForm {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-} */
 .newTopicBtn {
   width: fit-content;
   padding: 0.5rem;
+}
+.topicsFilter {
+  display: flex;
+  gap: 2rem;
+}
+.topicsFilter h2:hover {
+  cursor: pointer;
+}
+.selected {
+  color: red;
 }

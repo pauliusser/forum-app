@@ -13,6 +13,7 @@ const PostCard = ({
   userVote,
   isAuthor,
   isFirstPost,
+  userStatus,
 }) => {
   const userVoteVal = userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0;
   const otherUsersVotes = initialVotes - userVoteVal;
@@ -140,33 +141,35 @@ const PostCard = ({
 
   return (
     <div className={styles.postCard}>
-      <div className={styles.user}>
-        <img src={authorProfilePicture}></img>
-        <h4>{authorName}</h4>
-      </div>
-      <div className={styles.vote}>
-        {isAuthor ? (
-          <>
-            <h4>{voteCounter}</h4>
-            <h4>votes</h4>
-          </>
-        ) : (
-          <>
-            <button onClick={upvoteClick} className={upvoteBtn ? styles.active : null}>
-              ↑
-            </button>
-            <h4>{voteCounter}</h4>
-            <h4>votes</h4>
-            <button
-              onClick={downvoteClick}
-              className={downvoteBtn ? styles.active : null}>
-              ↓
-            </button>
-          </>
-        )}
+      <div className={styles.userPannel}>
+        <div className={styles.user}>
+          <img src={authorProfilePicture}></img>
+          <h4>{authorName}</h4>
+        </div>
+        <div className={styles.vote}>
+          {isAuthor ? (
+            <>
+              <h4>{voteCounter}</h4>
+              <h4>votes</h4>
+            </>
+          ) : (
+            <>
+              <button onClick={upvoteClick} className={upvoteBtn ? styles.active : null}>
+                ↑
+              </button>
+              <h4>{voteCounter}</h4>
+              <h4>votes</h4>
+              <button
+                onClick={downvoteClick}
+                className={downvoteBtn ? styles.active : null}>
+                ↓
+              </button>
+            </>
+          )}
+        </div>
       </div>
       <p>{content}</p>
-      {!isFirstPost && isAuthor && (
+      {((!isFirstPost && isAuthor) || userStatus === "admin") && (
         <button
           className={styles.deleteBtn}
           onClick={() => {

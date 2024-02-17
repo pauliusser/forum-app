@@ -32,36 +32,38 @@ const LogIn = () => {
 
   return (
     <PageTemplate>
-      <form
-        className={styles.form}
-        onSubmit={(event) => {
-          event.preventDefault();
-        }}>
-        <h1>Log In</h1>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          autoComplete="email"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}></input>
+      <div className={styles.wrapper}>
+        <form
+          className={styles.form}
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}>
+          <h1>Log In</h1>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}></input>
 
-        <label htmlFor="pass">Password</label>
-        <input
-          id="pass"
-          type="password"
-          autoComplete="current-password"
-          value={pass}
-          onChange={(event) => {
-            setPass(event.target.value);
-          }}></input>
+          <label htmlFor="pass">Password</label>
+          <input
+            id="pass"
+            type="password"
+            autoComplete="current-password"
+            value={pass}
+            onChange={(event) => {
+              setPass(event.target.value);
+            }}></input>
 
-        <button type="submit" onClick={logInAction}>
-          LogIn
-        </button>
-      </form>
+          <button type="submit" onClick={logInAction}>
+            LogIn
+          </button>
+        </form>
+      </div>
     </PageTemplate>
   );
 };

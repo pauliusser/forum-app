@@ -3,10 +3,12 @@ import styles from "./styles.module.css";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import logo from "../../src/images/small talk logo.png";
 
-const Header = () => {
+const Header = ({ userStatus, userName, userPic }) => {
   const router = useRouter();
   const [jwtToken, setJwtToken] = useState("");
+  const [isUserDataExist, setIsUserDataExist] = useState(false);
 
   const logOut = () => {
     Cookies.remove("jwt_token");
@@ -16,11 +18,21 @@ const Header = () => {
   useEffect(() => {
     setJwtToken(Cookies.get("jwt_token"));
   }, []);
+  useEffect(() => {
+    setIsUserDataExist(userStatus && userName && userPic);
+  }, [userStatus, userName, userPic]);
 
   return (
     <header className={styles.header}>
       <div className={styles.contentWrapper}>
-        <div>Logo</div>
+        <img src={logo.src} className={styles.logo} />
+        {isUserDataExist && (
+          <div className={styles.userWrapper}>
+            <h3>{userStatus}</h3>
+            <img src={userPic} className={styles.profilePic} />
+            <h3>{userName}</h3>
+          </div>
+        )}
         {jwtToken ? (
           <nav>
             <ul>

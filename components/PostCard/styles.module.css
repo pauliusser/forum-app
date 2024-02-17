@@ -3,10 +3,20 @@
   padding: 1rem;
   border-radius: 0.5rem;
   display: grid;
-  grid-template-columns: 100px auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
   gap: 1rem;
   padding: 1.5rem;
   width: 100%;
+}
+.userPannel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  /* align-content: center; */
+  gap: 1rem;
+  align-content: center;
+  justify-items: center;
+  width: 150px;
+  height: fit-content;
 }
 
 .postCard img {
@@ -20,6 +30,7 @@
   flex-direction: column;
   gap: 0.5rem;
   align-items: center;
+  justify-content: center;
 }
 .vote button {
   width: 1.5rem;

@@ -23,6 +23,7 @@ const Topic = () => {
   const [posts, setPosts] = useState([]);
   const [isNewPost, setNewPost] = useState(false);
   const [clickCount, setClickCount] = useState(0);
+  const [userStatus, setUserStatus] = useState("");
 
   const fetchPosts = async () => {
     try {
@@ -30,8 +31,8 @@ const Topic = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/posts/${topicId}`,
         { headers: headers }
       );
-      console.log("post response: ", response.data);
-      setPosts(response.data);
+      console.log("posts:", response.data);
+      setPosts(response.data.posts);
     } catch (err) {
       console.log(err);
       // router.push("/");
@@ -43,8 +44,9 @@ const Topic = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/topics/${topicId}`,
         { headers: headers }
       );
-      console.log("post response: ", response.data);
+      console.log("topic:", response.data);
       setTitle(response.data.topic.title);
+      setUserStatus(response.data.status);
     } catch (err) {
       console.log(err);
       // router.push("/");
@@ -106,7 +108,11 @@ const Topic = () => {
   return (
     <PageTemplate>
       <div className={styles.pageWrapper}>
-        {title && <h1>{title}</h1>}
+        {title && (
+          <div className={styles.titleWrapper}>
+            <h1>{title}</h1>
+          </div>
+        )}
         {posts &&
           posts.map((post, index) => {
             return (
@@ -121,6 +127,7 @@ const Topic = () => {
                 authorName={post.authorName}
                 authorProfilePicture={post.authorProfilePicture}
                 deletePost={deletePost}
+                userStatus={userStatus}
               />
             );
           })}

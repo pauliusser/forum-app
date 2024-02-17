@@ -10,6 +10,7 @@ const TopicCard = ({
   id,
   deleteTopic,
   isCreator,
+  userStatus,
 }) => {
   const router = useRouter();
 
@@ -39,7 +40,7 @@ const TopicCard = ({
         </h3>
         {initialPost && <p>{initialPost.content}</p>}
       </div>
-      {isCreator && (
+      {(isCreator || userStatus === "admin") && (
         <button className={styles.deleteBtn} onClick={deleteClick}>
           delete Topic
         </button>

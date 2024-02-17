@@ -13,3 +13,11 @@
   width: fit-content;
   padding: 0.5rem;
 }
+.titleWrapper {
+  background-color: rgb(255, 244, 231);
+  width: 100%;
+  height: 100px;
+  padding: 1rem;
+  margin-bottom: -40px;
+  border-radius: 1rem 1rem 0 0;
+}

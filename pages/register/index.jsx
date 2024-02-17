@@ -38,67 +38,69 @@ const Register = () => {
 
   return (
     <PageTemplate>
-      <form className={styles.form} onSubmit={(event) => event.preventDefault()}>
-        <h1>Register</h1>
-        <label htmlFor="name">Nickname</label>
-        <input
-          id="name"
-          autoComplete="off"
-          value={name}
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-          placeholder="spongebob"
-          type="text"></input>
+      <div className={styles.wrapper}>
+        <form className={styles.form} onSubmit={(event) => event.preventDefault()}>
+          <h1>Register</h1>
+          <label htmlFor="name">Nickname</label>
+          <input
+            id="name"
+            autoComplete="off"
+            value={name}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+            placeholder="spongebob"
+            type="text"></input>
 
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          autoComplete="email"
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-          placeholder="sponge@bikini.bottom"
-          type="email"></input>
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            autoComplete="email"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            placeholder="sponge@bikini.bottom"
+            type="email"></input>
 
-        <label htmlFor="pass">Password</label>
-        <input
-          id="pass"
-          autoComplete="new-password"
-          value={pass}
-          onChange={(event) => {
-            setPass(event.target.value);
-          }}
-          placeholder="secretRecipy123"
-          type="password"></input>
+          <label htmlFor="pass">Password</label>
+          <input
+            id="pass"
+            autoComplete="new-password"
+            value={pass}
+            onChange={(event) => {
+              setPass(event.target.value);
+            }}
+            placeholder="secretRecipy123"
+            type="password"></input>
 
-        <label htmlFor="repPass">Repeat password</label>
-        <input
-          id="repPass"
-          autoComplete="off"
-          value={repPass}
-          onChange={(event) => {
-            setRepPass(event.target.value);
-          }}
-          placeholder="secretRecipy123"
-          type="password"></input>
+          <label htmlFor="repPass">Repeat password</label>
+          <input
+            id="repPass"
+            autoComplete="off"
+            value={repPass}
+            onChange={(event) => {
+              setRepPass(event.target.value);
+            }}
+            placeholder="secretRecipy123"
+            type="password"></input>
 
-        <label htmlFor="pic">Profile picture</label>
-        <input
-          id="pic"
-          autoComplete="off"
-          value={pic}
-          onChange={(event) => {
-            setPic(event.target.value);
-          }}
-          placeholder="URL"
-          type="url"></input>
+          <label htmlFor="pic">Profile picture</label>
+          <input
+            id="pic"
+            autoComplete="off"
+            value={pic}
+            onChange={(event) => {
+              setPic(event.target.value);
+            }}
+            placeholder="URL"
+            type="url"></input>
 
-        <button type="submit" onClick={submitAction}>
-          Register
-        </button>
-      </form>
+          <button type="submit" onClick={submitAction}>
+            Register
+          </button>
+        </form>
+      </div>
     </PageTemplate>
   );
 };
