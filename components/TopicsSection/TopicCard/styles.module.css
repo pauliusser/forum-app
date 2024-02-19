@@ -1,33 +1,61 @@
 .topicCard {
-  background-color: bisque;
   width: 90%;
   max-width: 1000px;
-  padding: 1.5rem;
+
+  overflow: hidden;
+  position: relative;
   border-radius: 1rem;
+}
+.blendImage {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  opacity: 0%;
+  transition: 0.5s;
+}
+.enterAnim {
+  background-image: url("../../../src/images/playfull.gif");
+}
+.deleteAnim {
+  background-image: url("../../../src/images/iksaiRedmultiply.gif");
+}
+.contentWrapper {
+  background-color: rgba(195, 195, 195, 0.1);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(255, 255, 255, 1) inset,
+    -2px -2px 4px rgba(0, 0, 0, 0.2) inset;
+  padding: 1.5rem;
+  width: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
   display: grid;
   grid-template-columns: 100px auto 1fr auto;
   gap: 1rem;
 }
+
 .votes {
   align-self: center;
   text-align: center;
 }
 
-.topicCard img {
+.userPic {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.5), 2px 2px 2px rgba(255, 255, 255, 1);
 }
 .topicCard p {
-  /* overflow: hidden;
-  
-  text-overflow: ellipsis; */
-
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-line-clamp: 4;
   line-clamp: 4;
   -webkit-box-orient: vertical;
 }
@@ -37,15 +65,33 @@
   align-items: center;
   gap: 0.5rem;
 }
-.deleteBtn {
-  width: min-content;
-  height: min-content;
-  padding: 0.25rem;
-  align-self: center;
+.user h4 {
+  text-align: center;
 }
+
 .title {
   cursor: pointer;
 }
 .title:hover {
-  color: rgb(255, 60, 0);
+  color: var(--accent-blue);
+}
+.deleteBtn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: min-content;
+  height: min-content;
+  padding: 0.5rem;
+  align-self: center;
+  border-radius: 1rem;
+  border: none;
+  background-color: transparent;
+  box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.5), 2px 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  transition: 0.2s;
+}
+
+.deleteBtn:hover {
+  color: white;
+  background-color: var(--accent-red);
 }

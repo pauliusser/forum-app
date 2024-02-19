@@ -8,6 +8,8 @@ const NewTopicForm = ({ formClose }) => {
   // const response = axios.post()
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [isTitleAlert, setIsTitleAlert] = useState(false);
+  const [isContentAlert, setIsContentAlert] = useState(false);
   const newTopic = { title: title };
   // const [topicId, setTopicId] = useState("");
 
@@ -40,6 +42,8 @@ const NewTopicForm = ({ formClose }) => {
     }
   };
   const submitAction = async () => {
+    title ? setIsTitleAlert(false) : setIsTitleAlert(true);
+    content ? setIsContentAlert(false) : setIsContentAlert(true);
     if (!title || !content) {
       console.log("fill all fields");
       return;
@@ -57,39 +61,44 @@ const NewTopicForm = ({ formClose }) => {
   };
 
   return (
-    <form
-      className={styles.newTopicForm}
-      onSubmit={(event) => {
-        event.preventDefault();
-      }}>
-      <h2>New Topic</h2>
-      <button className={styles.closeBtn} onClick={formClose}>
-        X
-      </button>
-      <label htmlFor="title">Topic Title</label>
-      <input
-        type="text"
-        id="title"
-        placeholder="the amazing title"
-        value={title}
-        onChange={(event) => {
-          setTitle(event.target.value);
-        }}></input>
+    <>
+      <div className={styles.animation}></div>
+      <form
+        className={styles.newTopicForm}
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}>
+        <h2>New Topic</h2>
+        <button className={styles.closeBtn} onClick={formClose}>
+          X
+        </button>
+        <label htmlFor="title">Topic Title</label>
+        <input
+          style={{ border: isTitleAlert && "solid 1px var(--accent-red)" }}
+          type="text"
+          id="title"
+          placeholder="the amazing title"
+          value={title}
+          onChange={(event) => {
+            setTitle(event.target.value);
+          }}></input>
 
-      <label htmlFor="content">Content</label>
-      <textarea
-        id="content"
-        cols="30"
-        rows="10"
-        placeholder="some content related to the topic"
-        value={content}
-        onChange={(event) => {
-          setContent(event.target.value);
-        }}></textarea>
-      <button className={styles.submitBtn} onClick={submitAction}>
-        Submit
-      </button>
-    </form>
+        <label htmlFor="content">Content</label>
+        <textarea
+          style={{ border: isContentAlert && "solid 1px var(--accent-red)" }}
+          id="content"
+          cols="30"
+          rows="10"
+          placeholder="some content related to the topic"
+          value={content}
+          onChange={(event) => {
+            setContent(event.target.value);
+          }}></textarea>
+        <button className={styles.submitBtn} onClick={submitAction}>
+          Submit
+        </button>
+      </form>
+    </>
   );
 };
 

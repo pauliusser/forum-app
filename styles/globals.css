@@ -1,10 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Pangolin&display=swap");
+
 :root {
   --bg-color: rgb(223, 202, 202);
+  --accent-red: rgb(255, 0, 81);
+  --accent-blue: rgb(0, 123, 255);
+  --accent-yellow: rgb(255, 221, 0);
+  --accent-yellow-transparent: rgb(255, 183, 0, 0.2);
 }
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+label {
+  font-family: "Pangolin", cursive;
+  font-weight: 600;
+  font-style: normal;
+}
+p,
+input,
+textarea {
+  font-family: "Pangolin", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 html,

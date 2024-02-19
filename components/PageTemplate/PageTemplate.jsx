@@ -42,6 +42,7 @@ const PageTemplate = ({ children, setIsCookieExist }) => {
       />
       <div className={styles.contentWrapper}>{children}</div>
       <Footer />
+      <div className={styles.background}></div>
     </div>
   );
 };

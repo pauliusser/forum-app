@@ -17,7 +17,8 @@
 }
 .topicsFilter h2:hover {
   cursor: pointer;
+  color: var(--accent-blue);
 }
 .selected {
-  color: red;
+  color: var(--accent-blue);
 }

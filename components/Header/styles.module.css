@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--bg-color);
+  background-color: rgb(42, 42, 42);
 }
 
 .contentWrapper {
   height: 100px;
   width: 90%;
-  max-width: 1000px;
+  max-width: 900px;
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;

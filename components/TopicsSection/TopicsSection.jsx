@@ -97,6 +97,7 @@ const TopicsSection = () => {
                 creatroPic={topic.creatorDetails[0].profile_picture}
                 isCreator={topic.isCreator}
                 userStatus={userStatus}
+                creatorStatus={topic.creatorDetails[0].status}
               />
             );
           })}
