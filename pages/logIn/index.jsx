@@ -33,6 +33,7 @@ const LogIn = () => {
   return (
     <PageTemplate>
       <div className={styles.wrapper}>
+        <img className={styles.bgPicture}></img>
         <form
           className={styles.form}
           onSubmit={(event) => {

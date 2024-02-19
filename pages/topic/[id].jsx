@@ -128,6 +128,7 @@ const Topic = () => {
                 authorProfilePicture={post.authorProfilePicture}
                 deletePost={deletePost}
                 userStatus={userStatus}
+                authorStatus={post.authorDetails[0].status}
               />
             );
           })}

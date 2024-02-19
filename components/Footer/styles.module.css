@@ -1,7 +1,7 @@
 .footer {
   height: 100px;
   width: 100%;
-  background-color: var(--bg-color);
+  background-color: var(--black-col);
   display: flex;
   padding: 0 10%;
   justify-content: center;
@@ -14,4 +14,5 @@
 }
 .footer ul li a {
   cursor: pointer;
+  color: white;
 }

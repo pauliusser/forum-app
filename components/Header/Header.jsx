@@ -43,7 +43,7 @@ const Header = ({ userStatus, userName, userPic }) => {
                 <Link href="/about">About</Link>
               </li>
               <li>
-                <button onClick={logOut}>LogOut</button>
+                <a onClick={logOut}>LogOut</a>
               </li>
             </ul>
           </nav>

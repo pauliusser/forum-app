@@ -55,11 +55,8 @@ const TopicCard = ({
       <div className={styles.contentWrapper}>
         <div className={styles.user}>
           <img src={creatroPic} className={styles.userPic}></img>
-          <h4>
-            {creatorStatus}
-            <br />
-            {creatorName}
-          </h4>
+          <h5>{creatorStatus}</h5>
+          <h4>{creatorName}</h4>
         </div>
 
         {initialPost && (
@@ -84,7 +81,7 @@ const TopicCard = ({
               {title}
             </h3>
           )}
-          <h5>{convertDate(initialPost.createdAt)}</h5>
+          {initialPost && <h5>{convertDate(initialPost.createdAt)}</h5>}
           {initialPost && <p>{initialPost.content}</p>}
         </div>
         {(isCreator || userStatus === "admin") && (

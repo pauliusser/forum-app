@@ -14,6 +14,7 @@ const PostCard = ({
   isAuthor,
   isFirstPost,
   userStatus,
+  authorStatus,
 }) => {
   const userVoteVal = userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0;
   const otherUsersVotes = initialVotes - userVoteVal;
@@ -30,6 +31,7 @@ const PostCard = ({
   const [isVotingInitialized, setIsVotingInitialized] = useState(false);
   const [isButtonsInitialized, setisButtonsInitialized] = useState(false);
   const [clickCount, setClickCount] = useState(0);
+  const [isDelAnimActive, setIsDelAnimActive] = useState(false);
 
   const headers = {
     authorization: Cookies.get("jwt_token"),
@@ -140,44 +142,63 @@ const PostCard = ({
   }, [vote]);
 
   return (
-    <div className={styles.postCard}>
-      <div className={styles.userPannel}>
-        <div className={styles.user}>
-          <img src={authorProfilePicture}></img>
-          <h4>{authorName}</h4>
+    <div
+      className={styles.postCard}
+      style={{
+        backgroundColor: isFirstPost && "white",
+        border: isFirstPost && "solid 3px var(--black-col)",
+      }}>
+      <img
+        className={styles.blendImage}
+        style={{ opacity: isDelAnimActive && "100%" }}></img>
+      <div className={styles.contentWrapper}>
+        <div className={styles.userPannel}>
+          <div className={styles.user}>
+            <img src={authorProfilePicture} className={styles.profilePic}></img>
+            <h5>{authorStatus}</h5>
+            <h4>{authorName}</h4>
+          </div>
+          <div className={styles.vote}>
+            {isAuthor ? (
+              <>
+                <h4>{voteCounter}</h4>
+                <h4>votes</h4>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={upvoteClick}
+                  className={upvoteBtn ? styles.active : null}>
+                  ↑
+                </button>
+                <h4>{voteCounter}</h4>
+                <h4>votes</h4>
+                <button
+                  onClick={downvoteClick}
+                  className={downvoteBtn ? styles.active : null}>
+                  ↓
+                </button>
+              </>
+            )}
+          </div>
         </div>
-        <div className={styles.vote}>
-          {isAuthor ? (
-            <>
-              <h4>{voteCounter}</h4>
-              <h4>votes</h4>
-            </>
-          ) : (
-            <>
-              <button onClick={upvoteClick} className={upvoteBtn ? styles.active : null}>
-                ↑
-              </button>
-              <h4>{voteCounter}</h4>
-              <h4>votes</h4>
-              <button
-                onClick={downvoteClick}
-                className={downvoteBtn ? styles.active : null}>
-                ↓
-              </button>
-            </>
-          )}
-        </div>
+        <p>{content}</p>
+        {((!isFirstPost && isAuthor) || (!isFirstPost && userStatus === "admin")) && (
+          <button
+            className={styles.deleteBtn}
+            onMouseEnter={() => {
+              setIsDelAnimActive(true);
+            }}
+            onMouseLeave={() => {
+              setIsDelAnimActive(false);
+            }}
+            onClick={() => {
+              deletePost(id);
+            }}>
+            Delete post
+          </button>
+        )}
       </div>
-      <p>{content}</p>
-      {((!isFirstPost && isAuthor) || userStatus === "admin") && (
-        <button
-          className={styles.deleteBtn}
-          onClick={() => {
-            deletePost(id);
-          }}>
-          Delete post
-        </button>
-      )}
     </div>
   );
 };

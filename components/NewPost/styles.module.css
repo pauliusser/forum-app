@@ -1,18 +1,42 @@
+.animation {
+  position: relative;
+  max-width: 90%;
+  width: 1000px;
+  height: 350px;
+  /* left: 50%; */
+  /* top: 0; */
+  margin-bottom: calc(-350px - 1rem);
+  border-radius: 1rem;
+  overflow: hidden;
+  background-image: url("../../src/images/playfull.gif");
+  mix-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+}
 .newPost {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   width: 100%;
-  background-color: bisque;
-  border-radius: 0.5rem;
+  height: 350px;
+  background-color: rgba(0, 110, 255, 0.096);
+  border-radius: 1rem;
   padding: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(255, 255, 255, 1) inset,
+    -2px -2px 4px rgba(0, 0, 0, 0.25) inset;
 }
 .newPost textarea {
   width: 100%;
-  height: 200px;
+  height: 220px;
   resize: none;
-  padding: 0.5rem;
+  background-color: rgb(218, 229, 244);
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: -2px -2px 4px rgba(255, 255, 255, 1) inset,
+    2px 2px 4px rgba(0, 0, 0, 0.25) inset;
 }
 .buttons {
   display: flex;
@@ -20,5 +44,36 @@
 }
 .buttons button {
   width: 60px;
-  padding: 0.5rem;
+
+  border-radius: 50%;
+
+  background-color: transparent;
+
+  width: max-content;
+  justify-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(255, 255, 255, 1);
+}
+.SubmitBtn:hover {
+  background-color: var(--accent-blue);
+  color: white;
+}
+.SubmitBtn:active {
+  background-color: var(--accent-blue);
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(255, 255, 255, 1);
+  color: white;
+}
+.cancelBtn:hover {
+  background-color: var(--accent-red);
+  color: white;
+}
+.cancelBtn:active {
+  background-color: var(--accent-red);
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(255, 255, 255, 1);
+  color: white;
+}
+.alert {
+  border: solid 1px var(--accent-red);
 }

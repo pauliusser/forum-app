@@ -81,8 +81,16 @@ const TopicsSection = () => {
     <div className={styles.wrapper}>
       <section className={styles.topicsSection}>
         <div className={styles.topicsFilter}>
-          <h2 onClick={clickAllTopics}>All Topics</h2>
-          <h2 onClick={clickFilteredTopics}>My Topics</h2>
+          <h2
+            onClick={clickAllTopics}
+            style={{ color: isAllTopicsActive ? "var(--accent-blue)" : "inherit" }}>
+            All Topics
+          </h2>
+          <h2
+            onClick={clickFilteredTopics}
+            style={{ color: isFilteredTopicsActive ? "var(--accent-blue)" : "inherit" }}>
+            My Topics
+          </h2>
         </div>
         {topicsOnDisplay &&
           topicsOnDisplay.map((topic) => {

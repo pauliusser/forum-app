@@ -1,13 +1,41 @@
 .postCard {
-  background-color: bisque;
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 1rem;
+}
+.blendImage {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+  background-position: center;
+  background-size: cover;
+  opacity: 0%;
+  transition: 0.5s;
+  background-image: url("../../src/images/iksaiRedmultiply.gif");
+}
+.contentWrapper {
+  background-color: rgba(195, 195, 195, 0.1);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(255, 255, 255, 1) inset,
+    -2px -2px 4px rgba(0, 0, 0, 0.2) inset;
+  backdrop-filter: blur(5px);
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 1rem;
   padding: 1.5rem;
   width: 100%;
 }
+.firstCard {
+  border: solid 3px var(--black-col);
+}
+
 .userPannel {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -19,11 +47,12 @@
   height: fit-content;
 }
 
-.postCard img {
+.profilePic {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
   object-fit: cover;
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.5), 2px 2px 2px rgba(255, 255, 255, 1);
 }
 .vote {
   display: flex;
@@ -35,9 +64,14 @@
 .vote button {
   width: 1.5rem;
   height: 1.5rem;
+  border-radius: 1rem;
+  border: solid 1px var(--black-col);
+}
+.vote button:hover {
+  background-color: var(--accent-blue);
 }
 .active {
-  background-color: black;
+  background-color: var(--black-col);
   color: white;
 }
 .user {
@@ -46,9 +80,21 @@
   align-items: center;
   gap: 0.5rem;
 }
+.user h5 {
+  color: var(--accent-blue);
+}
 .deleteBtn {
   width: min-content;
   height: min-content;
-  padding: 0.25rem;
   align-self: self-start;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: transparent;
+  box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.5), 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: 0.2s;
+}
+.deleteBtn:hover {
+  color: white;
+  background-color: var(--accent-red);
 }

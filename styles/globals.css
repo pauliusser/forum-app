@@ -6,6 +6,7 @@
   --accent-blue: rgb(0, 123, 255);
   --accent-yellow: rgb(255, 221, 0);
   --accent-yellow-transparent: rgb(255, 183, 0, 0.2);
+  --black-col: rgb(40, 40, 40);
 }
 * {
   box-sizing: border-box;

@@ -1,5 +1,5 @@
 .topicCard {
-  width: 90%;
+  width: 100%;
   max-width: 1000px;
 
   overflow: hidden;
@@ -65,12 +65,17 @@
   align-items: center;
   gap: 0.5rem;
 }
+.user h5 {
+  color: var(--accent-blue);
+  font-weight: 100;
+}
 .user h4 {
   text-align: center;
 }
 
 .title {
   cursor: pointer;
+  padding-right: 3rem;
 }
 .title:hover {
   color: var(--accent-blue);

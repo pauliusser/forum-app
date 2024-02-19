@@ -2,13 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(42, 42, 42);
+  background-color: var(--black-col);
 }
 
 .contentWrapper {
   height: 100px;
   width: 90%;
-  max-width: 900px;
+  max-width: 1000px;
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -25,7 +25,11 @@
 }
 
 .contentWrapper nav ul li a {
+  color: white;
+}
+.contentWrapper nav ul li a:hover {
   cursor: pointer;
+  color: var(--accent-blue);
 }
 .profilePic {
   width: 4rem;
@@ -38,6 +42,9 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
+}
+.contentWrapper h3 {
+  color: white;
 }
 .contentWrapper h3:first-child {
   justify-self: end;

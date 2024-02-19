@@ -39,6 +39,7 @@ const Register = () => {
   return (
     <PageTemplate>
       <div className={styles.wrapper}>
+        <img className={styles.bgPicture}></img>
         <form className={styles.form} onSubmit={(event) => event.preventDefault()}>
           <h1>Register</h1>
           <label htmlFor="name">Nickname</label>
