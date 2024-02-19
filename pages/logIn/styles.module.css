@@ -10,6 +10,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  max-width: 100%;
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
   content: url("../../src/images/dotsAndLinesScreen.gif");

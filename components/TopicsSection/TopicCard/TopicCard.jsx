@@ -40,19 +40,21 @@ const TopicCard = ({
 
       {/* <img className={styles.Image}></img> */}
       <div className={styles.contentWrapper}>
-        <div className={styles.user}>
-          <img src={creatroPic} className={styles.userPic}></img>
-          <h5>{creatorStatus}</h5>
-          <h4>{creatorName}</h4>
-        </div>
+        <div className={styles.userPanel}>
+          <div className={styles.user}>
+            <img src={creatroPic} className={styles.userPic}></img>
+            <h5>{creatorStatus}</h5>
+            <h4>{creatorName}</h4>
+          </div>
 
-        {initialPost && (
-          <h4 className={styles.votes}>
-            {initialPost.votes}
-            <br />
-            votes
-          </h4>
-        )}
+          {initialPost && (
+            <h4 className={styles.votes}>
+              {initialPost.votes}
+              <br />
+              votes
+            </h4>
+          )}
+        </div>
 
         <div>
           {title && (

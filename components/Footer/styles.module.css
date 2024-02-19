@@ -1,9 +1,10 @@
 .footer {
+  position: relative;
   height: 100px;
   width: 100%;
   background-color: var(--black-col);
   display: flex;
-  padding: 0 10%;
+  /* padding: 0 10%; */
   justify-content: center;
   align-items: center;
 }

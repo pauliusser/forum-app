@@ -68,6 +68,8 @@
 .burger {
   display: none;
   z-index: 1;
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
 .burgerMenu {
   display: none;

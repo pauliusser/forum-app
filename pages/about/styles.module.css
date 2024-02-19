@@ -9,6 +9,7 @@
 }
 .contentWrapper {
   width: min-content;
+  width: 90%;
   max-width: 700px;
   display: flex;
   flex-direction: column;
@@ -20,4 +21,6 @@
 }
 .myPic {
   border-radius: 50%;
+  width: 90%;
+  height: 90%;
 }
