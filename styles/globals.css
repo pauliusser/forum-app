@@ -51,3 +51,6 @@ Link,
 button {
   cursor: pointer;
 }
+button {
+  transition: 0.2s;
+}

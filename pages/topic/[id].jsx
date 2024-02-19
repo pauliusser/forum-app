@@ -129,6 +129,7 @@ const Topic = () => {
                 deletePost={deletePost}
                 userStatus={userStatus}
                 authorStatus={post.authorDetails[0].status}
+                createdAt={post.createdAt}
               />
             );
           })}

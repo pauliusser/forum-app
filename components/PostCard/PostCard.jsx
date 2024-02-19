@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { convertDate } from "../../src/helpers/helpers.jsx";
 
 const PostCard = ({
   content,
@@ -15,6 +16,7 @@ const PostCard = ({
   isFirstPost,
   userStatus,
   authorStatus,
+  createdAt,
 }) => {
   const userVoteVal = userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0;
   const otherUsersVotes = initialVotes - userVoteVal;
@@ -32,6 +34,8 @@ const PostCard = ({
   const [isButtonsInitialized, setisButtonsInitialized] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [isDelAnimActive, setIsDelAnimActive] = useState(false);
+  const [isUpvoteAnimActive, setIsUpvoteAnimActive] = useState(false);
+  const [isDownvoteAnimActive, setIsDownvoteAnimActive] = useState(false);
 
   const headers = {
     authorization: Cookies.get("jwt_token"),
@@ -149,14 +153,24 @@ const PostCard = ({
         border: isFirstPost && "solid 3px var(--black-col)",
       }}>
       <img
-        className={styles.blendImage}
+        className={`${styles.blendImage} ${styles.delteAnim}`}
         style={{ opacity: isDelAnimActive && "100%" }}></img>
+      <img
+        className={`${styles.blendImage} ${styles.upvoteAnim}`}
+        style={{ opacity: isUpvoteAnimActive && "100%" }}></img>
+      <img
+        className={`${styles.blendImage} ${styles.downvoteAnim}`}
+        style={{ opacity: isDownvoteAnimActive && "100%" }}></img>
       <div className={styles.contentWrapper}>
         <div className={styles.userPannel}>
           <div className={styles.user}>
             <img src={authorProfilePicture} className={styles.profilePic}></img>
-            <h5>{authorStatus}</h5>
-            <h4>{authorName}</h4>
+            <div className={styles.postDetails}>
+              <h5>{authorStatus}</h5>
+              <h4>{authorName}</h4>
+              <h6>{convertDate(createdAt).date}</h6>
+              <h6>{convertDate(createdAt).time}</h6>
+            </div>
           </div>
           <div className={styles.vote}>
             {isAuthor ? (
@@ -167,15 +181,31 @@ const PostCard = ({
             ) : (
               <>
                 <button
+                  onMouseEnter={() => {
+                    setIsUpvoteAnimActive(true);
+                  }}
+                  onMouseLeave={() => {
+                    setIsUpvoteAnimActive(false);
+                  }}
                   onClick={upvoteClick}
-                  className={upvoteBtn ? styles.active : null}>
+                  className={`${upvoteBtn ? styles.btnUpvoteActive : null} ${
+                    styles.btnUpvote
+                  }`}>
                   ↑
                 </button>
                 <h4>{voteCounter}</h4>
                 <h4>votes</h4>
                 <button
+                  onMouseEnter={() => {
+                    setIsDownvoteAnimActive(true);
+                  }}
+                  onMouseLeave={() => {
+                    setIsDownvoteAnimActive(false);
+                  }}
                   onClick={downvoteClick}
-                  className={downvoteBtn ? styles.active : null}>
+                  className={`${downvoteBtn ? styles.btnDownvoteActive : null} ${
+                    styles.btnDownvote
+                  }`}>
                   ↓
                 </button>
               </>

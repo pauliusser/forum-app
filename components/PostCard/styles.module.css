@@ -4,6 +4,7 @@
   overflow: hidden;
   position: relative;
   border-radius: 1rem;
+  overflow: hidden;
 }
 .blendImage {
   display: block;
@@ -13,11 +14,20 @@
   width: 100%;
   height: 100%;
   mix-blend-mode: multiply;
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
   opacity: 0%;
   transition: 0.5s;
-  background-image: url("../../src/images/iksaiRedmultiply.gif");
+  border-radius: 1rem;
+}
+.delteAnim {
+  content: url("../../src/images/iksaiRedmultiply.gif");
+}
+.upvoteAnim {
+  content: url("../../src/images/upvote.gif");
+  transform: rotate(180deg);
+}
+.downvoteAnim {
+  content: url("../../src/images/downvote.gif");
 }
 .contentWrapper {
   background-color: rgba(195, 195, 195, 0.1);
@@ -61,16 +71,26 @@
   align-items: center;
   justify-content: center;
 }
+
 .vote button {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 1rem;
   border: solid 1px var(--black-col);
 }
-.vote button:hover {
-  background-color: var(--accent-blue);
+.btnUpvote:hover {
+  background-color: var(--accent-yellow);
+  color: black;
 }
-.active {
+.btnDownvote:hover {
+  background-color: var(--accent-red);
+  color: black;
+}
+.btnUpvoteActive {
+  background-color: var(--black-col);
+  color: white;
+}
+.btnDownvoteActive {
   background-color: var(--black-col);
   color: white;
 }
@@ -79,6 +99,11 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+}
+.postDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .user h5 {
   color: var(--accent-blue);

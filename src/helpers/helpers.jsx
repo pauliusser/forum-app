@@ -25,5 +25,33 @@ const authorization = async (router) => {
     }
   }
 };
+const convertDate = (timestampStr) => {
+  // Create a Date object with the timestamp string
+  const timestamp = new Date(timestampStr);
 
-export { authorization };
+  // Get the components of the date and time
+  const year = timestamp.getFullYear();
+  const month = timestamp.getMonth() + 1; // January is 0, so add 1
+  const day = timestamp.getDate();
+  const hours = timestamp.getHours();
+  const minutes = timestamp.getMinutes();
+  const seconds = timestamp.getSeconds();
+
+  const addZero = (number) => {
+    if (number < 10) {
+      return "0" + number;
+    }
+    return number;
+  };
+
+  const date = `${year}.${addZero(month)}.${addZero(day)}`;
+  const time = `${addZero(hours)}:${addZero(minutes)}:${addZero(seconds)}`;
+
+  // Format the date and time as needed
+  return {
+    date: date,
+    time: time,
+  };
+};
+
+export { authorization, convertDate };

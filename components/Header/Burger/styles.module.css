@@ -1,0 +1,7 @@
+.burger {
+  fill: white;
+}
+.burger:hover {
+  fill: var(--accent-blue);
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
-import patternExes from "../../../src/images/iksaiRedmultiply.gif";
+import { convertDate } from "../../../src/helpers/helpers.jsx";
 
 const TopicCard = ({
   title,
@@ -17,27 +17,14 @@ const TopicCard = ({
   const router = useRouter();
   const [isDelAnimActive, setIsDelAnimActive] = useState(false);
   const [isEnterAnimActive, setIsEnterAnimActive] = useState(false);
+  const date = convertDate(initialPost.createdAt).date;
+  const time = convertDate(initialPost.createdAt).time;
 
   const deleteClick = () => {
     deleteTopic(id);
   };
   const titleClick = () => {
     router.push(`/topic/${id}`);
-  };
-  const convertDate = (timestampStr) => {
-    // Create a Date object with the timestamp string
-    const timestamp = new Date(timestampStr);
-
-    // Get the components of the date and time
-    const year = timestamp.getFullYear();
-    const month = timestamp.getMonth() + 1; // January is 0, so add 1
-    const day = timestamp.getDate();
-    const hours = timestamp.getHours();
-    const minutes = timestamp.getMinutes();
-    const seconds = timestamp.getSeconds();
-
-    // Format the date and time as needed
-    return `${year}.${month}.${day} - ${hours}:${minutes}:${seconds}`;
   };
 
   return (
@@ -81,7 +68,7 @@ const TopicCard = ({
               {title}
             </h3>
           )}
-          {initialPost && <h5>{convertDate(initialPost.createdAt)}</h5>}
+          {initialPost && <h5>{`${date} - ${time}`}</h5>}
           {initialPost && <p>{initialPost.content}</p>}
         </div>
         {(isCreator || userStatus === "admin") && (
