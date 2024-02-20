@@ -10,20 +10,20 @@
   display: block;
   position: absolute;
   top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
   mix-blend-mode: multiply;
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
   opacity: 0%;
   transition: 0.5s;
+  border-radius: 1rem;
 }
 .enterAnim {
-  background-image: url("../../../src/images/playfull.gif");
+  content: url("../../../src/images/playfull.gif");
 }
 .deleteAnim {
-  background-image: url("../../../src/images/iksaiRedmultiply.gif");
+  content: url("../../../src/images/iksaiRedmultiply.gif");
 }
 .contentWrapper {
   background-color: rgba(195, 195, 195, 0.1);
@@ -86,7 +86,7 @@
   top: 1rem;
   width: min-content;
   height: min-content;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   align-self: center;
   border-radius: 1rem;
   border: none;

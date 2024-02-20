@@ -6,8 +6,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 
 const LogIn = () => {
-  const [email, setEmail] = useState("sponge@bikini.bottom");
-  const [pass, setPass] = useState("secretRecipy123");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
   const router = useRouter();
 
   const user = {

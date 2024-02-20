@@ -27,7 +27,7 @@
   transition: 0.5s;
 }
 .newTopicForm {
-  background-color: rgba(255, 246, 123, 0.353);
+  background-color: rgba(255, 255, 255, 0.579);
   position: fixed;
   max-width: 90%;
   width: 700px;
@@ -43,7 +43,7 @@
   padding: 1.5rem;
   border-radius: 1rem;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
 }
 .blendImage {
   display: block;
@@ -61,7 +61,7 @@
   padding: 0.5rem 0;
 }
 .newTopicForm input {
-  background-color: rgb(241, 238, 214);
+  background-color: rgb(242, 240, 227);
   padding: 1rem;
   grid-column-start: 2;
   grid-column-end: 4;
@@ -71,7 +71,7 @@
     2px 2px 4px rgba(0, 0, 0, 0.25) inset;
 }
 .submitBtn {
-  background-color: rgb(241, 238, 214);
+  background-color: rgb(242, 240, 227);
   grid-column-start: 2;
   grid-column-end: 3;
   width: max-content;
@@ -90,7 +90,7 @@
 }
 
 .newTopicForm textarea {
-  background-color: rgb(241, 238, 214);
+  background-color: rgb(242, 240, 227);
   resize: none;
   grid-column-start: 2;
   grid-column-end: 4;
@@ -107,7 +107,7 @@
 }
 .closeBtn {
   border-radius: 50%;
-  background-color: rgb(241, 238, 214);
+  background-color: rgb(242, 240, 227);
   width: 2rem;
   height: 2rem;
   padding: 0px;

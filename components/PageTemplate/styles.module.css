@@ -1,5 +1,6 @@
 .pageWrapper {
   width: 100%;
+  min-width: 350px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

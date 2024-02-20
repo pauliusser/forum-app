@@ -24,6 +24,13 @@ const Topic = () => {
   const [isNewPost, setNewPost] = useState(false);
   const [clickCount, setClickCount] = useState(0);
   const [userStatus, setUserStatus] = useState("");
+  const [isDeleteAlert, setIsDeleteAlert] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
+
+  const deleteConfiramtion = (id) => {
+    setIsDeleteAlert(true);
+    setDeleteId(id);
+  };
 
   const fetchPosts = async () => {
     try {
@@ -74,7 +81,7 @@ const Topic = () => {
     setClickCount(clickCount + 1);
   };
 
-  const deletePost = async (id) => {
+  const deletePostData = async (id) => {
     console.log("delete post: ", id);
     try {
       const response = await axios.delete(
@@ -104,47 +111,79 @@ const Topic = () => {
     }, 60000);
     return () => clearInterval(authInterval);
   }, []);
+  useEffect(() => {
+    authorization(router);
+  }, [clickCount, isDeleteAlert]);
 
   return (
     <PageTemplate>
-      <div className={styles.pageWrapper}>
-        {title && (
-          <div className={styles.titleWrapper}>
-            <h1>{title}</h1>
+      {posts[0] ? (
+        <div className={styles.pageWrapper}>
+          {title && (
+            <div className={styles.titleWrapper}>
+              <h1>{title}</h1>
+            </div>
+          )}
+          {posts[0] &&
+            posts.map((post, index) => {
+              return (
+                <PostCard
+                  isFirstPost={index === 0}
+                  key={post._id}
+                  id={post._id}
+                  initialVotes={post.votes}
+                  userVote={post.userVote}
+                  isAuthor={post.isAuthor}
+                  content={post.content}
+                  authorName={post.authorName}
+                  authorProfilePicture={post.authorProfilePicture}
+                  deleteConfiramtion={deleteConfiramtion}
+                  userStatus={userStatus}
+                  authorStatus={post.authorDetails[0].status}
+                  createdAt={post.createdAt}
+                />
+              );
+            })}
+          {isNewPost ? (
+            <NewPost setNewPost={setNewPost} submitNewPost={submitNewPost} />
+          ) : (
+            <button
+              className={styles.newPostBtn}
+              onClick={() => {
+                setNewPost(true);
+              }}>
+              New Post
+            </button>
+          )}
+        </div>
+      ) : (
+        <img className={styles.spinner}></img>
+      )}
+
+      {isDeleteAlert && (
+        <div className={styles.alertWrapper}>
+          <div className={styles.alertMessage}>
+            <h2>CONFIRM DELETE ?</h2>
+            <div className={styles.alertButtons}>
+              <button
+                onClick={() => {
+                  deletePostData(deleteId);
+                  setIsDeleteAlert(false);
+                }}
+                className={styles.yesBtn}>
+                Yes
+              </button>
+              <button
+                onClick={() => {
+                  setIsDeleteAlert(false);
+                }}
+                className={styles.noBtn}>
+                No
+              </button>
+            </div>
           </div>
-        )}
-        {posts &&
-          posts.map((post, index) => {
-            return (
-              <PostCard
-                isFirstPost={index === 0}
-                key={post._id}
-                id={post._id}
-                initialVotes={post.votes}
-                userVote={post.userVote}
-                isAuthor={post.isAuthor}
-                content={post.content}
-                authorName={post.authorName}
-                authorProfilePicture={post.authorProfilePicture}
-                deletePost={deletePost}
-                userStatus={userStatus}
-                authorStatus={post.authorDetails[0].status}
-                createdAt={post.createdAt}
-              />
-            );
-          })}
-        {isNewPost ? (
-          <NewPost setNewPost={setNewPost} submitNewPost={submitNewPost} />
-        ) : (
-          <button
-            className={styles.newPostBtn}
-            onClick={() => {
-              setNewPost(true);
-            }}>
-            New Post
-          </button>
-        )}
-      </div>
+        </div>
+      )}
     </PageTemplate>
   );
 };

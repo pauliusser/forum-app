@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { convertDate } from "../../../src/helpers/helpers.jsx";
@@ -9,36 +9,40 @@ const TopicCard = ({
   creatorName,
   creatroPic,
   id,
-  deleteTopic,
+  deleteConfiramtion,
   isCreator,
   userStatus,
   creatorStatus,
+  noCount,
 }) => {
   const router = useRouter();
   const [isDelAnimActive, setIsDelAnimActive] = useState(false);
   const [isEnterAnimActive, setIsEnterAnimActive] = useState(false);
+  const [isOveride, setIsOveride] = useState(false);
+
   const date = convertDate(initialPost.createdAt).date;
   const time = convertDate(initialPost.createdAt).time;
 
   const deleteClick = () => {
-    deleteTopic(id);
+    deleteConfiramtion(id);
+    setIsOveride(true);
   };
   const titleClick = () => {
     router.push(`/topic/${id}`);
   };
+  useEffect(() => {
+    setIsOveride(false);
+  }, [noCount]);
 
   return (
     <div className={styles.topicCard}>
-      <div className={styles.bgAnim}>
-        <div
-          className={`${styles.blendImage} ${styles.enterAnim}`}
-          style={{ opacity: isEnterAnimActive && "100%" }}></div>
-        <div
-          className={`${styles.blendImage} ${styles.deleteAnim}`}
-          style={{ opacity: isDelAnimActive && "100%" }}></div>
-      </div>
+      <img
+        className={`${styles.blendImage} ${styles.enterAnim}`}
+        style={{ opacity: isEnterAnimActive && "100%" }}></img>
+      <img
+        className={`${styles.blendImage} ${styles.deleteAnim}`}
+        style={{ opacity: (isDelAnimActive || isOveride) && "100%" }}></img>
 
-      {/* <img className={styles.Image}></img> */}
       <div className={styles.contentWrapper}>
         <div className={styles.userPanel}>
           <div className={styles.user}>
@@ -56,20 +60,16 @@ const TopicCard = ({
           )}
         </div>
 
-        <div>
-          {title && (
-            <h3
-              onClick={titleClick}
-              className={styles.title}
-              onMouseEnter={() => {
-                setIsEnterAnimActive(true);
-              }}
-              onMouseLeave={() => {
-                setIsEnterAnimActive(false);
-              }}>
-              {title}
-            </h3>
-          )}
+        <div
+          onClick={titleClick}
+          className={styles.title}
+          onMouseEnter={() => {
+            setIsEnterAnimActive(true);
+          }}
+          onMouseLeave={() => {
+            setIsEnterAnimActive(false);
+          }}>
+          {title && <h3>{title}</h3>}
           {initialPost && <h5>{`${date} - ${time}`}</h5>}
           {initialPost && <p>{initialPost.content}</p>}
         </div>
@@ -83,11 +83,10 @@ const TopicCard = ({
             onMouseLeave={() => {
               setIsDelAnimActive(false);
             }}>
-            delete Topic
+            delete
           </button>
         )}
       </div>
-      {/* <div className={styles.blendImage}></div> */}
     </div>
   );
 };

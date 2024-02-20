@@ -10,10 +10,23 @@
 }
 .footer ul {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   list-style: none;
 }
 .footer ul li a {
   cursor: pointer;
   color: white;
+  display: block;
+  border: 2px solid rgba(0, 0, 0, 0);
+
+  border-radius: 50%;
+  line-height: 0;
+}
+.footer ul li a:hover {
+  border: 2px solid var(--accent-red);
+}
+
+.archiLogo {
+  width: 2rem;
+  height: 2rem;
 }

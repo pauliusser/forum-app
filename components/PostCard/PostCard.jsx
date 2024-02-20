@@ -8,7 +8,7 @@ const PostCard = ({
   content,
   authorName,
   authorProfilePicture,
-  deletePost,
+  deleteConfiramtion,
   id,
   initialVotes,
   userVote,
@@ -143,6 +143,7 @@ const PostCard = ({
       deleteVote();
     }
     setVoteCounter(otherUsersVotes + vote);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vote]);
 
   return (
@@ -157,10 +158,10 @@ const PostCard = ({
         style={{ opacity: isDelAnimActive && "100%" }}></img>
       <img
         className={`${styles.blendImage} ${styles.upvoteAnim}`}
-        style={{ opacity: isUpvoteAnimActive && "100%" }}></img>
+        style={{ opacity: isUpvoteAnimActive && !upvoteBtn && "100%" }}></img>
       <img
         className={`${styles.blendImage} ${styles.downvoteAnim}`}
-        style={{ opacity: isDownvoteAnimActive && "100%" }}></img>
+        style={{ opacity: isDownvoteAnimActive && !downvoteBtn && "100%" }}></img>
       <div className={styles.contentWrapper}>
         <div className={styles.userPannel}>
           <div className={styles.user}>
@@ -223,7 +224,7 @@ const PostCard = ({
               setIsDelAnimActive(false);
             }}
             onClick={() => {
-              deletePost(id);
+              deleteConfiramtion(id);
             }}>
             Delete post
           </button>
