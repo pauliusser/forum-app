@@ -8,14 +8,37 @@ import { useRouter } from "next/router";
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [emailValidate, setEmailValidate] = useState(false);
+  const [passValidate, setPassValidate] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   const router = useRouter();
 
   const user = {
     email: email,
     password: pass,
   };
+  const isValidEmail = (email) => {
+    // Regular expression for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const logInAction = async () => {
+    email ? setEmailValidate(false) : setEmailValidate(true);
+    pass ? setPassValidate(false) : setPassValidate(true);
+    if (!email || !pass) {
+      setIsAlert(true);
+      setAlertMsg("required fields");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setEmailValidate(true);
+      setIsAlert(true);
+      setAlertMsg("invalid email");
+      return;
+    }
+    setIsAlert(false);
     // console.log("log in btn clicked");
     try {
       const response = await axios.post(
@@ -42,6 +65,11 @@ const LogIn = () => {
           <h1>Log In</h1>
           <label htmlFor="email">Email</label>
           <input
+            style={{
+              border: emailValidate
+                ? "1px solid var(--accent-red)"
+                : "1px solid transparent",
+            }}
             id="email"
             type="email"
             autoComplete="email"
@@ -52,6 +80,11 @@ const LogIn = () => {
 
           <label htmlFor="pass">Password</label>
           <input
+            style={{
+              border: passValidate
+                ? "1px solid var(--accent-red)"
+                : "1px solid transparent",
+            }}
             id="pass"
             type="password"
             autoComplete="current-password"
@@ -63,6 +96,7 @@ const LogIn = () => {
           <button type="submit" onClick={logInAction}>
             LogIn
           </button>
+          {isAlert && <h5 className={styles.alertMsg}>{alertMsg}</h5>}
         </form>
       </div>
     </PageTemplate>

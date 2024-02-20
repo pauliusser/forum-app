@@ -22,6 +22,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1rem;
+  position: relative;
 }
 .form label {
   justify-self: end;
@@ -58,4 +59,10 @@
   grid-column-start: 2;
   grid-column-end: 3;
   justify-self: start;
+}
+.alertMsg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: var(--accent-red);
 }
