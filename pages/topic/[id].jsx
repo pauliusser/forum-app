@@ -26,6 +26,7 @@ const Topic = () => {
   const [userStatus, setUserStatus] = useState("");
   const [isDeleteAlert, setIsDeleteAlert] = useState(false);
   const [deleteId, setDeleteId] = useState("");
+  const [noCount, setNoCount] = useState(0);
 
   const deleteConfiramtion = (id) => {
     setIsDeleteAlert(true);
@@ -141,6 +142,7 @@ const Topic = () => {
                   userStatus={userStatus}
                   authorStatus={post.authorDetails[0].status}
                   createdAt={post.createdAt}
+                  noCount={noCount}
                 />
               );
             })}
@@ -176,6 +178,7 @@ const Topic = () => {
               <button
                 onClick={() => {
                   setIsDeleteAlert(false);
+                  setNoCount(noCount + 1);
                 }}
                 className={styles.noBtn}>
                 No

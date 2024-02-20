@@ -17,6 +17,7 @@ const PostCard = ({
   userStatus,
   authorStatus,
   createdAt,
+  noCount,
 }) => {
   const userVoteVal = userVote === "upvote" ? 1 : userVote === "downvote" ? -1 : 0;
   const otherUsersVotes = initialVotes - userVoteVal;
@@ -36,6 +37,7 @@ const PostCard = ({
   const [isDelAnimActive, setIsDelAnimActive] = useState(false);
   const [isUpvoteAnimActive, setIsUpvoteAnimActive] = useState(false);
   const [isDownvoteAnimActive, setIsDownvoteAnimActive] = useState(false);
+  const [isOveride, setIsOveride] = useState(false);
 
   const headers = {
     authorization: Cookies.get("jwt_token"),
@@ -121,6 +123,9 @@ const PostCard = ({
       console.log(err);
     }
   };
+  useEffect(() => {
+    setIsOveride(false);
+  }, [noCount]);
 
   useEffect(() => {
     if (!isButtonsInitialized) {
@@ -155,7 +160,7 @@ const PostCard = ({
       }}>
       <img
         className={`${styles.blendImage} ${styles.delteAnim}`}
-        style={{ opacity: isDelAnimActive && "100%" }}></img>
+        style={{ opacity: (isDelAnimActive || isOveride) && "100%" }}></img>
       <img
         className={`${styles.blendImage} ${styles.upvoteAnim}`}
         style={{ opacity: isUpvoteAnimActive && !upvoteBtn && "100%" }}></img>
@@ -224,6 +229,7 @@ const PostCard = ({
               setIsDelAnimActive(false);
             }}
             onClick={() => {
+              setIsOveride(true);
               deleteConfiramtion(id);
             }}>
             Delete post

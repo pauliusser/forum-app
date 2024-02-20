@@ -58,7 +58,6 @@ const TopicsSection = () => {
   };
   const deleteConfiramtion = (id) => {
     setIsDeleteAlert(true);
-    setIsAnimOn;
     setDeleteId(id);
   };
   const deleteTopic = async (id) => {
@@ -172,7 +171,6 @@ const TopicsSection = () => {
                 onClick={() => {
                   setIsDeleteAlert(false);
                   setNoCount(noCount + 1);
-                  setIsAnimOn(false);
                 }}
                 className={styles.noBtn}>
                 No
