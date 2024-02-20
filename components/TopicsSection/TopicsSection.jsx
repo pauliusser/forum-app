@@ -21,7 +21,6 @@ const TopicsSection = () => {
   const [isDeleteAlert, setIsDeleteAlert] = useState(false);
   const [deleteId, setDeleteId] = useState("");
   const router = useRouter();
-  const [isAnimOn, setIsAnimOn] = useState(false);
   const [noCount, setNoCount] = useState(0);
 
   const clickAllTopics = () => {
@@ -74,9 +73,6 @@ const TopicsSection = () => {
     } catch (err) {
       console.log(err);
     }
-  };
-  const deactivateDelAnim = () => {
-    return false;
   };
 
   useEffect(() => {
