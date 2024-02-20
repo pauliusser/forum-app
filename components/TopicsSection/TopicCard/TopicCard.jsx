@@ -38,7 +38,7 @@ const TopicCard = ({
     <div className={styles.topicCard}>
       <img
         className={`${styles.blendImage} ${styles.enterAnim}`}
-        style={{ opacity: isEnterAnimActive && "100%" }}></img>
+        style={{ opacity: isEnterAnimActive && "30%" }}></img>
       <img
         className={`${styles.blendImage} ${styles.deleteAnim}`}
         style={{ opacity: (isDelAnimActive || isOveride) && "100%" }}></img>
