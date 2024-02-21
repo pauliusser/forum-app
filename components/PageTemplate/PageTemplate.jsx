@@ -22,14 +22,12 @@ const PageTemplate = ({ children, setIsCookieExist }) => {
           headers: headers,
         }
       );
-      // console.log(response.data);
       setUserData(response.data);
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
-    // console.log(headers);
     jwtToken && getUserDetails();
   }, []);
 

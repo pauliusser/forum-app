@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import "dotenv/config";
 import axios from "axios";
 import Cookies from "js-cookie";
-import PostCard from "@/components/PostCard/PostCard";
+import PostCard from "@/components/PostsSection/PostCard/PostCard";
 import NewPost from "@/components/NewPost/NewPost";
 import DeleteAlert from "@/components/DeleteAlert/DeleteAlert";
 import styles from "./styles.module.css";
@@ -44,7 +44,6 @@ const PostsSection = () => {
       setPosts(response.data.posts);
     } catch (err) {
       console.log(err);
-      // router.push("/");
     }
   };
   const fetchTopicTitle = async () => {
@@ -58,7 +57,6 @@ const PostsSection = () => {
       setUserStatus(response.data.status);
     } catch (err) {
       console.log(err);
-      // router.push("/");
     }
   };
   const submitNewPost = async (content) => {

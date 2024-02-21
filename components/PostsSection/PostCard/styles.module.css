@@ -20,14 +20,14 @@
   border-radius: 1rem;
 }
 .delteAnim {
-  content: url("../../src/images/iksaiRedmultiply.gif");
+  content: url("../../../src/images/iksaiRedmultiply.gif");
 }
 .upvoteAnim {
-  content: url("../../src/images/upvote.gif");
+  content: url("../../../src/images/upvote.gif");
   transform: rotate(180deg);
 }
 .downvoteAnim {
-  content: url("../../src/images/downvote.gif");
+  content: url("../../../src/images/downvote.gif");
 }
 .contentWrapper {
   background-color: rgba(195, 195, 195, 0.1);

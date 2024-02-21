@@ -39,13 +39,12 @@ const LogIn = () => {
       return;
     }
     setIsAlert(false);
-    // console.log("log in btn clicked");
+
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/users/logIn`,
         user
       );
-      // console.log(response.data.jwt_token);
       Cookies.set("jwt_token", response.data.jwt_token);
       router.push("/");
     } catch (err) {

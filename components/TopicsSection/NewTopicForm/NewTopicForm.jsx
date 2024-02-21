@@ -5,13 +5,11 @@ import Cookies from "js-cookie";
 import "dotenv/config";
 
 const NewTopicForm = ({ formClose }) => {
-  // const response = axios.post()
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isTitleAlert, setIsTitleAlert] = useState(false);
   const [isContentAlert, setIsContentAlert] = useState(false);
   const newTopic = { title: title };
-  // const [topicId, setTopicId] = useState("");
 
   const headers = {
     authorization: Cookies.get("jwt_token"),
