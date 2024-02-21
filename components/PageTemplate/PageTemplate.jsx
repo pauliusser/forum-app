@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const PageTemplate = ({ children, setIsCookieExist }) => {
+const PageTemplate = ({ children }) => {
   const jwtToken = Cookies.get("jwt_token");
 
   const headers = {
@@ -38,9 +38,9 @@ const PageTemplate = ({ children, setIsCookieExist }) => {
         userName={userData && userData.user.name}
         userPic={userData && userData.user.profile_picture}
       />
+      <div className={styles.background}></div>
       <div className={styles.contentWrapper}>{children}</div>
       <Footer />
-      <div className={styles.background}></div>
     </div>
   );
 };

@@ -4,7 +4,6 @@
   width: 100%;
   background-color: var(--black-col);
   display: flex;
-  /* padding: 0 10%; */
   justify-content: center;
   align-items: center;
 }

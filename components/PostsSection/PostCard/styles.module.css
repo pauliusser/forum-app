@@ -125,8 +125,6 @@
 .contentWrapper:not(:has(.deleteBtn)) {
   grid-template-columns: auto 1fr;
 }
-/* @media screen and (width < 768px) {
-} */
 @media screen and (width < 640px) {
   .contentWrapper {
     grid-template-columns: 1fr auto;
@@ -140,7 +138,6 @@
   .contentWrapper:not(:has(.deleteBtn)) .userPannel {
     justify-content: space-between;
     grid-column-start: 1;
-    /* grid-column-end: 3; */
   }
   .contentWrapper:has(.deleteBtn) .content {
     grid-column-start: 1;
@@ -150,8 +147,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    /* flex-direction: row-reverse;
-    justify-content: flex-end; */
   }
 
   .user {

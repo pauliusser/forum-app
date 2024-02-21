@@ -1,7 +1,6 @@
 .pageWrapper {
   width: 100%;
   flex: 1 1;
-  /* background-color: aqua; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +16,6 @@
   gap: 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
-  /* justify-content: center; */
 }
 .myPic {
   border-radius: 50%;

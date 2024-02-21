@@ -3,12 +3,10 @@
   max-width: 90%;
   width: 1000px;
   height: 350px;
-  /* left: 50%; */
-  /* top: 0; */
   margin-bottom: calc(-350px - 1rem);
   border-radius: 1rem;
   overflow: hidden;
-  background-image: url("../../src/images/playfull.gif");
+  background-image: url("../../../src/images/playfull.gif");
   mix-blend-mode: multiply;
   background-position: center;
   background-size: cover;
