@@ -41,6 +41,7 @@
   padding: 1.5rem;
   width: 100%;
 }
+
 .firstCard {
   border: solid 3px var(--black-col);
 }
@@ -121,23 +122,34 @@
   color: white;
   background-color: var(--accent-red);
 }
+.contentWrapper:not(:has(.deleteBtn)) {
+  grid-template-columns: auto 1fr;
+}
 /* @media screen and (width < 768px) {
 } */
 @media screen and (width < 640px) {
   .contentWrapper {
-    grid-template-columns: auto auto;
-    gap: 1rem;
+    grid-template-columns: 1fr auto;
+    column-gap: 0.5rem;
     padding: 1rem;
     width: 100%;
   }
+  .contentWrapper:not(:has(.deleteBtn)) {
+    grid-template-columns: auto;
+  }
   .contentWrapper:not(:has(.deleteBtn)) .userPannel {
     justify-content: space-between;
+    grid-column-start: 1;
+    /* grid-column-end: 3; */
+  }
+  .contentWrapper:has(.deleteBtn) .content {
     grid-column-start: 1;
     grid-column-end: 3;
   }
   .userPannel {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     /* flex-direction: row-reverse;
     justify-content: flex-end; */
   }
@@ -156,8 +168,6 @@
   .contentWrapper p {
     text-align: end;
     grid-row-start: 2;
-    grid-column-start: 1;
-    grid-column-end: 3;
   }
   .deleteBtn {
     justify-self: self-end;

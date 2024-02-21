@@ -7,6 +7,7 @@ import NewTopicForm from "./NewTopicForm/NewTopicForm";
 import TopicCard from "./TopicCard/TopicCard";
 import { authorization } from "@/src/helpers/helpers";
 import { useRouter } from "next/router";
+import DeleteAlert from "../DeleteAlert/DeleteAlert";
 
 const TopicsSection = () => {
   const [isNewTopic, setIsNewTopic] = useState(false);
@@ -74,7 +75,14 @@ const TopicsSection = () => {
       console.log(err);
     }
   };
-
+  const deleteYes = () => {
+    deleteTopic(deleteId);
+    setIsDeleteAlert(false);
+  };
+  const deleteNo = () => {
+    setIsDeleteAlert(false);
+    setNoCount(noCount + 1);
+  };
   useEffect(() => {
     if (topics) {
       const filtered = topics.filter((topic) => {
@@ -150,31 +158,7 @@ const TopicsSection = () => {
       ) : (
         <img className={styles.spinner}></img>
       )}
-      {isDeleteAlert && (
-        <div className={styles.alertWrapper}>
-          <div className={styles.alertMessage}>
-            <h2>CONFIRM DELETE ?</h2>
-            <div className={styles.alertButtons}>
-              <button
-                onClick={() => {
-                  deleteTopic(deleteId);
-                  setIsDeleteAlert(false);
-                }}
-                className={styles.yesBtn}>
-                Yes
-              </button>
-              <button
-                onClick={() => {
-                  setIsDeleteAlert(false);
-                  setNoCount(noCount + 1);
-                }}
-                className={styles.noBtn}>
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {isDeleteAlert && <DeleteAlert yesClick={deleteYes} noClick={deleteNo} />}
     </>
   );
 };

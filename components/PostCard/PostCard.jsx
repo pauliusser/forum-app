@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { convertDate } from "../../src/helpers/helpers.jsx";
+import ProfilePicture from "../ProfilePicture/ProfilePicture";
 
 const PostCard = ({
   content,
@@ -170,7 +171,7 @@ const PostCard = ({
       <div className={styles.contentWrapper}>
         <div className={styles.userPannel}>
           <div className={styles.user}>
-            <img src={authorProfilePicture} className={styles.profilePic}></img>
+            <ProfilePicture src={authorProfilePicture} />
             <div className={styles.postDetails}>
               <h5>{authorStatus}</h5>
               <h4>{authorName}</h4>
@@ -218,7 +219,7 @@ const PostCard = ({
             )}
           </div>
         </div>
-        <p>{content}</p>
+        <p className={styles.content}>{content}</p>
         {((!isFirstPost && isAuthor) || (!isFirstPost && userStatus === "admin")) && (
           <button
             className={styles.deleteBtn}
@@ -232,7 +233,7 @@ const PostCard = ({
               setIsOveride(true);
               deleteConfiramtion(id);
             }}>
-            Delete post
+            Delete
           </button>
         )}
       </div>

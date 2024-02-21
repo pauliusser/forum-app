@@ -1,0 +1,119 @@
+.pageWrapper {
+  margin: auto;
+  width: 90%;
+  max-width: 1000px;
+  flex: 1 1;
+  padding: 50px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titleWrapper {
+  background-color: var(--black-col);
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  padding-bottom: 2rem;
+  margin-bottom: -2rem;
+  border-radius: 1rem 1rem 0 0;
+  color: white;
+}
+.newPostBtn {
+  background-color: rgba(255, 255, 255, 0);
+  width: max-content;
+  justify-self: start;
+  padding: 1rem 1.5rem;
+  border-radius: 3rem;
+  border: none;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(255, 255, 255, 1);
+}
+.newPostBtn:hover {
+  background-color: var(--accent-blue);
+}
+.newPostBtn:active {
+  background-color: var(--accent-blue);
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(255, 255, 255, 1);
+}
+.spinner {
+  content: url("../../src/images/spinnerSmall.gif");
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply;
+}
+.alertWrapper {
+  background-color: transparent;
+  width: 90%;
+  max-width: 300px;
+  height: 150px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+  object-fit: cover;
+  opacity: 100%;
+  background-image: url("../../src/images/iksaiRedmultiply.gif");
+  backdrop-filter: blur(5px);
+  background-size: auto;
+}
+.alertMessage {
+  width: 100%;
+  height: 150px;
+  background-color: rgba(255, 0, 43, 0.669);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  backdrop-filter: blur(5px);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  border: 8px solid var(--accent-red);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(255, 255, 255, 1) inset,
+    -2px -2px 4px rgba(0, 0, 0, 0.2) inset;
+}
+.alertMessage h2 {
+  text-align: center;
+  color: white;
+}
+.alertButtons {
+  display: flex;
+  gap: 2rem;
+}
+.alertButtons button {
+  width: 64px;
+  height: 32px;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(255, 255, 255, 0.3);
+}
+.yesBtn {
+  background-color: white;
+  color: var(--accent-red);
+}
+.noBtn {
+  background-color: white;
+}
+.yesBtn:hover {
+  background-color: var(--accent-red);
+  color: white;
+}
+.noBtn:hover {
+  background-color: var(--accent-blue);
+  color: white;
+}
+.yesBtn:active {
+  background-color: var(--accent-red);
+  color: white;
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(255, 255, 255, 0.3);
+}
+.noBtn:active {
+  background-color: var(--accent-blue);
+  color: white;
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(255, 255, 255, 0.3);
+}

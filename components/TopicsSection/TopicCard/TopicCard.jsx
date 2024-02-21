@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { convertDate } from "../../../src/helpers/helpers.jsx";
+import ProfilePicture from "@/components/ProfilePicture/ProfilePicture";
 
 const TopicCard = ({
   title,
@@ -44,9 +45,12 @@ const TopicCard = ({
         style={{ opacity: (isDelAnimActive || isOveride) && "100%" }}></img>
 
       <div className={styles.contentWrapper}>
-        <div className={styles.userPanel}>
+        <div
+          className={`${styles.userPanel} ${
+            (isCreator || userStatus === "admin") && styles.paddingRight
+          }`}>
           <div className={styles.user}>
-            <img src={creatroPic} className={styles.userPic}></img>
+            <ProfilePicture src={creatroPic} />
             <h5>{creatorStatus}</h5>
             <h4>{creatorName}</h4>
           </div>
@@ -62,7 +66,7 @@ const TopicCard = ({
 
         <div
           onClick={titleClick}
-          className={styles.title}
+          className={styles.content}
           onMouseEnter={() => {
             setIsEnterAnimActive(true);
           }}

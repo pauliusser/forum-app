@@ -1,0 +1,80 @@
+.alertWrapper {
+  background-color: transparent;
+  width: 90%;
+  max-width: 300px;
+  height: 150px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+  object-fit: cover;
+  opacity: 100%;
+  background-image: url("../../src/images/iksaiRedmultiply.gif");
+  backdrop-filter: blur(5px);
+  background-size: auto;
+}
+.alertMessage {
+  width: 100%;
+  height: 150px;
+  background-color: rgba(255, 0, 43, 0.669);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  backdrop-filter: blur(5px);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  border: 8px solid var(--accent-red);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2), 2px 2px 4px rgba(255, 255, 255, 1) inset,
+    -2px -2px 4px rgba(0, 0, 0, 0.2) inset;
+}
+.alertMessage h2 {
+  text-align: center;
+  color: white;
+}
+.alertButtons {
+  display: flex;
+  gap: 2rem;
+}
+.alertButtons button {
+  width: 64px;
+  height: 32px;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25), -4px -4px 8px rgba(255, 255, 255, 0.3);
+}
+.yesBtn {
+  background-color: white;
+  color: var(--accent-red);
+}
+.noBtn {
+  background-color: white;
+}
+.yesBtn:hover {
+  background-color: var(--accent-red);
+  color: white;
+}
+.noBtn:hover {
+  background-color: var(--accent-blue);
+  color: white;
+}
+.yesBtn:active {
+  background-color: var(--accent-red);
+  color: white;
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(255, 255, 255, 0.3);
+}
+.noBtn:active {
+  background-color: var(--accent-blue);
+  color: white;
+  box-shadow: -4px -4px 8px rgba(0, 0, 0, 0.25), 4px 4px 8px rgba(255, 255, 255, 0.3);
+}
+.deleteBg {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
